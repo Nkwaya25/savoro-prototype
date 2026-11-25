@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-mood="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#E31C13">
+<meta name="robots" content="noindex">
+<title>Savoro · Barcelona, rated by its own</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/controls.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/explore.css">
+<link rel="stylesheet" href="css/restaurant.css">
+<link rel="stylesheet" href="css/lists.css">
+<link rel="stylesheet" href="css/passport.css">
+<link rel="stylesheet" href="css/how-biz.css">
+<link rel="stylesheet" href="css/overlays.css">
+<link rel="stylesheet" href="css/rate.css">
+<link rel="stylesheet" href="css/additions.css">
+<link rel="stylesheet" href="css/onboarding.css">
+<link rel="stylesheet" href="css/sheets.css">
+</head>
+<body>
+<div class="app">
+  <nav class="rail" id="rail" aria-label="Main"></nav>
+  <div>
+    <header class="top" id="top"></header>
+    <main id="main"><div id="view" class="view"></div></main>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Main"></nav>
+</div>
+<dialog class="sheet" id="dlg"></dialog>
+<div class="ov" id="search" role="dialog" aria-modal="true" aria-label="Search" hidden></div>
+<div class="ov rate" id="rate" role="dialog" aria-modal="true" aria-labelledby="rtitle" hidden></div>
+<div class="ov" id="onb" role="dialog" aria-modal="true" aria-label="Welcome" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<!-- Load order matters: files share one global scope and run top to bottom. -->
+<script src="js/data.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/state.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/time.js"></script>
+<script src="js/taste.js"></script>
+<script src="js/ui-kit.js"></script>
+<script src="js/map.js"></script>
+<script src="js/components.js"></script>
+<script src="js/pages/now.js"></script>
+<script src="js/pages/explore.js"></script>
+<script src="js/pages/restaurant.js"></script>
+<script src="js/pages/lists.js"></script>
+<script src="js/pages/person.js"></script>
+<script src="js/pages/me.js"></script>
+<script src="js/pages/how-biz.js"></script>
+<script src="js/router.js"></script>
+<script src="js/bindings.js"></script>
+<script src="js/explore-map.js"></script>
+<script src="js/sheets.js"></script>
+<script src="js/search.js"></script>
+<script src="js/rate.js"></script>
+<script src="js/onboarding.js"></script>
+<script src="js/events.js"></script>
+</body>
+</html>
