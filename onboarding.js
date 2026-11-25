@@ -1,0 +1,28 @@
+"use strict";
+/* ============ onboarding: splash → invite → barri → calibrate → your people ============ */
+const OB={open:false,step:0,code:"LAIA-7K2",barri:null,local:true,cal:{}};const obEl=$("#onb");
+const CAL=["xamfra","lluna","raco","tendre","merce","modernista"];
+const Q5=[.1,.3,.5,.72,.92];
+function openOnb(){Object.assign(OB,{open:true,step:0,barri:S.me.barri,local:S.me.local,cal:{}});obEl.hidden=false;document.body.classList.add("locked");renderOnb();requestAnimationFrame(()=>obEl.classList.add("on"))}
+function closeOnb(){OB.open=false;obEl.classList.remove("on");document.body.classList.remove("locked");setTimeout(()=>{if(!OB.open){obEl.hidden=true;obEl.innerHTML=""}},reduced.matches?0:320)}
+const codeOk=c=>/^[A-Z]{3,6}-?[A-Z0-9]{2,4}$/i.test(c.trim());
+function renderOnb(){const st=OB.step;obEl.classList.toggle("red",st===0);let body="",ft="";
+  if(st===0){body=`<div class="splash" style="display:grid;gap:18px">${logo()}<h1 class="x" style="color:#fff">${t("o_tag")}</h1><p class="sub">${S.lang==="es"?"Las sonrisas de la gente que come aquí cada día, en un mapa que sabe qué está vivo ahora.":"Smiles from the people who eat here every day, on a map that knows what's alive right now."}</p></div>`;
+    ft=`<button class="btn ghost" type="button" data-act="olang" style="color:#fff;border-color:rgba(255,255,255,.5);flex:0 0 auto">${t("o_lang")}</button><button class="btn white" type="button" data-act="onext">${t("o_start")} ${arcI()}</button>`}
+  if(st===1){const ok=codeOk(OB.code);body=`<h2 class="x">${two("o_codeH")}</h2><p class="sub">${t("o_codeP")}</p><div class="codein"><label class="sr" for="ocode">Invite code</label><input id="ocode" value="${esc(OB.code)}" maxlength="10" autocomplete="off" spellcheck="false"></div><div class="okmsg" id="okmsg">${ok?`${pAv(PID.laia,30)}<span>${t("o_codeOk","Laia Martí")}</span>`:`<span class="muted">${t("o_codeBad")}</span>`}</div>`;
+    ft=`<button class="btn ghost" type="button" data-act="oback">${t("back")}</button><button class="btn" type="button" data-act="onext" id="ocnext" ${ok?"":"disabled"}>${t("next")} ${arcI()}</button>`}
+  if(st===2){body=`<h2 class="x">${two("o_barriH")}</h2><p class="sub">${t("o_barriP")}</p><div class="chips">${ALLB.map(b=>`<button class="chip" type="button" data-act="obarri" data-v="${b}" aria-pressed="${OB.local&&OB.barri===b}">${BARRIS[b]}</button>`).join("")}<button class="chip" type="button" data-act="obarri" data-v="visit" aria-pressed="${!OB.local}">${t("o_visit")}</button></div>`;
+    ft=`<button class="btn ghost" type="button" data-act="oback">${t("back")}</button><button class="btn" type="button" data-act="onext" ${OB.barri||!OB.local?"":"disabled"}>${t("next")} ${arcI()}</button>`}
+  if(st===3){const n=Object.keys(OB.cal).length;body=`<h2 class="x">${two("o_calH")}</h2><p class="sub">${t("o_calP")}</p><div class="calib">${CAL.map(id=>{const r=RID[id],cur=OB.cal[id];return`<div class="cal">${swatch(r)}<div><b>${esc(r.name)}</b><small>${SHORTB[r.barri]} · ${L(CUIS[r.cuisine])}</small></div><div class="q5" role="group" aria-label="${esc(r.name)}">${Q5.map((v,i)=>`<button type="button" data-act="ocal" data-id="${id}" data-v="${v}" aria-pressed="${cur===v}" aria-label="${t("words")[i]}">${smile(v,{w:34,h:15,sw:3.6,c:"currentColor"})}<small>${t("wordsShort")[i]}</small></button>`).join("")}<button class="nb" type="button" data-act="ocal" data-id="${id}" data-v="x" aria-pressed="${cur==="x"}">${t("o_notBeen")}</button></div></div>`}).join("")}</div>`;
+    const rated=Object.values(OB.cal).filter(v=>v!=="x").length;ft=`<button class="btn ghost" type="button" data-act="oback">${t("back")}</button><button class="btn" type="button" data-act="onext" ${rated>=3?"":"disabled"}>${rated>=3?t("next"):t("o_left",3-rated)} ${arcI()}</button>`}
+  if(st===4){const ppl=PEOPLE.filter(p=>p.local).sort((a,b)=>matchOf(b)-matchOf(a)).slice(0,5);body=`<h2 class="x">${two("o_doneH")}</h2><p class="sub">${t("o_doneP")}</p><div class="card people" style="padding:6px">${ppl.map(p=>personRow(p)).join("")}</div>`;
+    ft=`<button class="btn ghost" type="button" data-act="oback">${t("back")}</button><button class="btn" type="button" data-act="ofinish">${t("o_go")} ${arcI()}</button>`}
+  obEl.innerHTML=`<div class="obd"><div class="oinn">${st>0&&st<4?`<div class="prog" aria-hidden="true" style="justify-content:flex-start">${[1,2,3].map(i=>`<svg class="${i<st?"done":i===st?"cur":""}" viewBox="0 0 40 15"><path d="M4 4 Q20 ${i<st?19:8} 36 4"/></svg>`).join("")}</div>`:""}${body}${st===0?`<button class="lab" type="button" data-act="oskip" style="color:#fff;opacity:.8;justify-self:start;min-height:44px">${S.lang==="es"?"Entrar con datos de ejemplo":"Skip, use the demo account"}</button>`:""}</div></div><div class="oft">${ft}</div>`;
+  if(st===1){const i=$("#ocode");i.addEventListener("input",()=>{OB.code=i.value.toUpperCase();const ok=codeOk(OB.code);$("#ocnext").disabled=!ok;$("#okmsg").innerHTML=ok?`${pAv(PID.laia,30)}<span>${t("o_codeOk","Laia Martí")}</span>`:`<span class="muted">${t("o_codeBad")}</span>`})}
+  $(".obd",obEl).scrollTop=0}
+function onbNext(){if(OB.step===3){/* the calibration becomes your first ratings, so taste match is real */
+    const d=new Date().toISOString().slice(0,10);S.ratings=Object.entries(OB.cal).filter(([,v])=>v!=="x").map(([rid,v])=>({rid,v,take:wordOf(v),d:[],date:d}));
+    const top=PEOPLE.filter(p=>p.local).sort((a,b)=>matchOf(b)-matchOf(a)).slice(0,3).map(p=>p.id);S.follow=new Set(["laia",...top]);persist()}
+  OB.step++;renderOnb()}
+function onbFinish(){S.me.barri=OB.barri||S.me.barri;S.me.local=OB.local;S.onboarded=true;persist();closeOnb();go("now");rerender()}
+
