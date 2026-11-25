@@ -1,0 +1,20 @@
+"use strict";
+/* ============ EXPLORE ============ */
+function filtered(){return R.filter(r=>(S.f.dist==="all"||(S.f.dist==="gracia")===(r.barri==="gracia"))&&vibeOk(r,S.f.vibe)&&(!S.f.open||openNow(r))&&(!S.f.locals||!isTrap(r)))}
+function sortedRows(){const rs=filtered();if(S.f.sort==="for")return rs.map(r=>[r,predict(r).v]).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);return rs.sort((a,b)=>shown(b)-shown(a))}
+function rowsHTML(){if(EX.block){const b=BID[EX.block];let rs=b.rs.slice();let near="";
+    if(!rs.length){const d=x=>Math.hypot(BID[x.block].cx-b.cx,BID[x.block].cy-b.cy);rs=R.slice().sort((x,y)=>d(x)-d(y)).slice(0,3);near=`<p class="small muted" style="margin:0 2px 10px">${t("blockNone")}</p>`}
+    return`<div class="blockhd"><p class="lab">${esc(t("blockHere",SHORTB[b.barri],t("places",b.rs.length)))}</p><button class="chip" type="button" data-act="mreset">${I("close")}${t("mapAll")}</button></div>${near}<div class="rows" id="rowlist">${rs.map((r,i)=>row(r,i+1)).join("")}</div>`}
+  const rs=sortedRows();if(!rs.length)return empty(t("noMatch"),"",`<button class="btn sm" type="button" data-act="freset">${t("reset")} ${arcI()}</button>`);
+  const out=[];let k=0;rs.forEach(r=>{if(r.featured&&!S.f.vibe)return;out.push(row(r,++k));if(k===2){const ft=rs.find(x=>x.featured);if(ft)out.push(row(ft,0,{feat:true}))}});
+  return`<p class="lab" style="margin:0 2px 10px">${t("nPlaces",rs.length)} · ${S.f.locals?t("localsOnly"):t("everyone")}</p><div class="rows" id="rowlist">${out.join("")}</div>`}
+function exMapHTML(ids){return mapSVG({interactive:true,hl:ids,vb:EX.vb||startVB(),names:true,you:true,youW:400,label:t("aliveNow")})+`<div class="maplg" aria-hidden="true"><span class="lg"><i class="sw s-open"></i>${t("lg_open")}</span><span class="lg"><i class="sw s-soon"></i>${t("lg_soon")}</span><span class="lg"><i class="sw s-closed"></i>${t("lg_closed")}</span></div><div class="mapctl"><button class="ib solid" type="button" data-act="mlocate" aria-label="${t("locate")}">${ic('<circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7.5"/>')}</button><button class="ib solid" type="button" data-act="mzoom" data-v="in" aria-label="${t("mapIn")}">${I("plus")}</button><button class="ib solid" type="button" data-act="mzoom" data-v="out" aria-label="${t("mapOut")}">${ic('<path d="M5 12h14"/>')}</button></div><button class="pill mapall" type="button" data-act="mreset">${I("back").replace("<svg",'<svg width="16" height="16"')}${t("mapAll")}</button>`}
+function pageExplore(){const ids=new Set(filtered().map(r=>r.block));
+  return`<section class="exhead"><h1 class="x" tabindex="-1">${t("ex_t")}</h1><p class="muted">${t("ex_lede")}</p></section>
+  <div class="chips row" id="vibes">${VIBES.map(([k,lab])=>`<button class="chip" type="button" data-act="fvibe" data-v="${k}" aria-pressed="${S.f.vibe===k}">${esc(L(lab))}</button>`).join("")}</div>
+  <div class="exbar" style="margin:8px 0 14px"><div class="seg" role="group">${[["smile","sortSmile"],["for","sortFor"]].map(([k,l])=>`<button type="button" data-act="fsort" data-v="${k}" aria-pressed="${S.f.sort===k}">${t(l)}</button>`).join("")}</div>
+   <div style="display:flex;gap:14px;flex-wrap:wrap"><button class="switch" type="button" role="switch" data-act="flocals" aria-checked="${S.f.locals}"><span class="tr"></span>${t("localsOnly")}</button><button class="switch" type="button" role="switch" data-act="fopen" aria-checked="${S.f.open}"><span class="tr"></span>${t("openNow")}</button></div></div>
+  <div class="exgrid"><div class="mapcol"><div class="exmap" id="exMap">${exMapHTML(ids)}</div><p class="small muted" style="margin:8px 2px 0">${t("mapTip")}</p>
+   <div class="seg" role="group" style="margin-top:10px">${[["all","both"],["eixample",""],["gracia",""]].map(([k,l])=>`<button type="button" data-act="fdist" data-v="${k}" aria-pressed="${S.f.dist===k}">${l?t(l):k==="gracia"?"Gràcia":"Eixample"}</button>`).join("")}</div></div>
+   <div id="rows">${rowsHTML()}</div></div>${foot()}`}
+
