@@ -1,0 +1,29 @@
+/* explore */
+.exgrid{display:grid;gap:14px}
+@media (min-width:960px){.exgrid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}.exgrid .mapcol{position:sticky;top:90px}}
+.exhead{display:grid;gap:12px;padding:10px 0 4px}
+.exhead h1{font-size:clamp(2rem,8vw,3rem)}
+.exmap{border-radius:24px;overflow:hidden;background:var(--street);border:1px solid var(--line);position:relative}
+.exmap .citymap{width:100%;height:auto;display:block}
+@media (max-width:959px){.exmap .citymap{height:min(80vw,340px)}}
+.exbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.rows{display:grid;gap:10px}
+.prow{position:relative;display:grid;grid-template-columns:auto 64px minmax(0,1fr);gap:12px;align-items:center;padding:12px;transition:transform .3s var(--spring),box-shadow .3s}
+.prow:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.prow .rk{font-family:var(--disp);font-stretch:75%;font-weight:850;font-size:1.9rem;width:1.3em;text-align:center;color:var(--muted);line-height:1}
+.prow h3{font-family:var(--disp);font-stretch:108%;font-weight:850;font-size:1.1rem;line-height:1.12}
+.prow .mt{font-size:.82rem;color:var(--muted);font-weight:600;margin-top:2px}
+.prow .ln{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:7px}
+.prow .sc{display:inline-flex;align-items:center;gap:6px;font-weight:850}
+.prow .sc small{font-weight:650;color:var(--muted)}
+.prow .tl{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.prow .save{position:absolute;right:10px;top:10px}
+.prow .bodyc{padding-right:44px}
+.prow.feat{border:2px solid var(--amber);background:color-mix(in srgb,var(--amber) 6%,var(--surface))}
+.prow.feat .rk{font-size:0;width:1.3em}
+.prow .paid{margin-bottom:6px}
+.fnote{grid-column:1/-1;font-size:.78rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.empty{display:grid;justify-items:center;text-align:center;gap:10px;padding:36px 18px;border:2px dashed var(--line);border-radius:var(--r)}
+.empty b{font-family:var(--disp);font-stretch:110%;font-weight:850;font-size:1.3rem}
+.empty p{color:var(--muted);max-width:36ch}
+

@@ -1,0 +1,77 @@
+/* passport */
+.pcover{position:relative;margin:0 -16px;padding:18px 16px 22px;background:var(--hero);color:var(--onhero);overflow:hidden;display:grid;gap:16px;isolation:isolate}
+.pcover::before{content:"";position:absolute;inset:0;background-image:var(--panot);background-size:56px;z-index:-1}
+@media (min-width:960px){.pcover{margin:8px 0 0;border-radius:28px;padding:26px 28px}}
+.pcover .who{display:flex;gap:14px;align-items:center}
+.pcover .who .av{width:68px;height:68px;font-size:1.4rem;background:#FFA800;color:#3A0A06;box-shadow:0 0 0 4px rgba(255,255,255,.35)}
+.pcover h1{font-size:clamp(1.9rem,8vw,3rem)}
+.pcover .badge{display:inline-flex;align-items:center;gap:6px;background:#1B1310;color:#FFD27A;font-size:.78rem;font-weight:850;padding:4px 10px;border-radius:99px;margin-top:6px}
+/* banner colour: Savoro red (default), ink, or red by day and ink from 17:00 */
+[data-banner=ink] .pcover,[data-banner=time]:is([data-mood=dinner],[data-mood=late]) .pcover{--hero:#1B1310;--onhero:#FFF6EA}
+[data-banner=ink] .pcover .badge,[data-banner=time]:is([data-mood=dinner],[data-mood=late]) .pcover .badge{background:#FFA800;color:#1B1310}
+[data-banner=ink] .pcover .badge svg path,[data-banner=time]:is([data-mood=dinner],[data-mood=late]) .pcover .badge svg path{stroke:#1B1310}
+[data-mood=late][data-banner=ink] .pcover,[data-mood=late][data-banner=time] .pcover{box-shadow:inset 0 -1px 0 var(--line)}
+.pcover{transition:background-color .5s}
+.bsw{width:30px;height:30px;flex:none;clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%)}
+.bsw.b-red{background:#E31C13}.bsw.b-ink{background:#1B1310}.bsw.b-time{background:linear-gradient(135deg,#E31C13 50%,#1B1310 50%)}
+.bans{display:grid;gap:8px}
+.pcover .gear{position:absolute;right:12px;top:12px;background:rgba(0,0,0,.2);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.stats div{display:grid}
+.stats b{font-family:var(--disp);font-stretch:90%;font-weight:900;font-size:clamp(1.6rem,7vw,2.3rem);line-height:1}
+.stats span{font-size:.74rem;font-weight:700;opacity:.9;line-height:1.2}
+.pgrid{display:grid;gap:14px;margin-top:14px}
+@media (min-width:960px){.pgrid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start}}
+.stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+.stamp{aspect-ratio:1;display:grid;place-items:center;text-align:center;position:relative;transform:rotate(var(--rot));transition:transform .35s var(--spring)}
+.stamp:hover{transform:rotate(0) scale(1.05)}
+.stamp svg{position:absolute;inset:0;width:100%;height:100%}
+.stamp .st{position:relative;display:grid;gap:1px;padding:0 10px}
+.stamp b{font-family:var(--disp);font-stretch:100%;font-weight:850;font-size:.86rem;line-height:1.05}
+.stamp small{font-size:.62rem;font-weight:800}
+.stamp.off{color:var(--muted)}
+.stamp.on{color:var(--acc)}
+.stamp.fresh{animation:thunk .6s var(--spring)}
+@keyframes thunk{from{transform:rotate(var(--rot)) scale(1.7);opacity:0}}
+.rank{display:grid;gap:2px;counter-reset:r}
+.rank .mini{padding:8px 6px}
+.rank .pos{font-family:var(--disp);font-stretch:75%;font-weight:850;font-size:1.3rem;width:1.6em;text-align:center;color:var(--muted);flex:none}
+.taste{display:grid;gap:9px}
+.taste .cmp{grid-template-columns:110px minmax(0,1fr) auto}
+.invite{display:grid;gap:12px;padding:18px;border-radius:var(--r);background:var(--ink);color:var(--bg);position:relative;overflow:hidden}
+.invite h3{font-family:var(--disp);font-stretch:112%;font-weight:850;font-size:1.3rem;line-height:1.1}
+.invite p{opacity:.85;font-size:.92rem}
+.code{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.code span{font-family:var(--disp);font-stretch:125%;font-weight:900;font-size:1.5rem;letter-spacing:.04em;padding:8px 14px;border-radius:12px;border:2px dashed currentColor}
+.slots3{display:flex;gap:6px}
+.slots3 i{width:28px;height:12px;border-radius:9px;background:#FFA800}
+.slots3 i.used{background:rgba(255,255,255,.2)}
+.people{display:grid;gap:4px}
+.person{position:relative;display:flex;align-items:center;gap:12px;padding:10px;border-radius:16px}
+.person:hover{background:var(--soft)}
+.person .av{width:44px;height:44px;font-size:.9rem}
+.person .pi{flex:1;line-height:1.25}
+.person .pi b{display:block;font-weight:800}
+.person .pi small{color:var(--muted);font-size:.8rem}
+.match{display:inline-flex;align-items:center;gap:4px;font-weight:850;font-size:.8rem;color:var(--acc);white-space:nowrap}
+.ucover{position:relative;margin:0 -16px;padding:18px 16px 22px;background:var(--pc);color:#fff;display:grid;gap:14px;overflow:hidden;isolation:isolate}
+.ucover::before{content:"";position:absolute;inset:0;background-image:var(--panot);background-size:56px;z-index:-1}
+@media (min-width:960px){.ucover{margin:8px 0 0;border-radius:28px;padding:26px 28px}}
+.ucover h1{font-size:clamp(1.9rem,8vw,3rem)}
+.ucover .who{display:flex;gap:14px;align-items:center}
+.ucover .who .av{box-shadow:0 0 0 4px rgba(255,255,255,.35)}
+.ustats{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px;max-width:520px}
+.ustats>div{display:grid;align-content:start;gap:2px}
+.ustats b{font-family:var(--disp);font-stretch:90%;font-weight:900;font-size:clamp(1.6rem,7vw,2.2rem);line-height:1}
+.ustats span{font-size:.76rem;font-weight:750;opacity:.9}
+.ustats .um b{color:#FFD27A}
+.mbar{display:block;height:6px;border-radius:9px;background:rgba(255,255,255,.25);overflow:hidden;margin-top:4px}
+.mbar i{display:block;height:100%;border-radius:9px;background:#FFA800;transform-origin:left;animation:grow 1s .2s var(--spring) both}
+.ucover .follow{background:#fff;color:#1B1310;justify-self:start}
+.ucover .follow[aria-pressed=true]{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}
+.vs{display:grid;gap:8px}
+.vsr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:10px 12px;border-radius:14px;background:var(--soft);font-size:.9rem}
+.vsr b{font-weight:800}
+.vsr .v{display:grid;justify-items:center;font-weight:850;font-size:.86rem;line-height:1.1;min-width:44px}
+.vsr .v small{font-size:.66rem;color:var(--muted);font-weight:700}
+

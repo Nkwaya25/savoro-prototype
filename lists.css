@@ -1,0 +1,14 @@
+/* lists page */
+.lhero{display:grid;gap:16px;padding:12px 0 4px}
+@media (min-width:700px){.lhero{grid-template-columns:240px minmax(0,1fr);align-items:end}}
+.lhero .cover{max-width:280px;width:100%}
+.lhero h1{font-size:clamp(2rem,8vw,3.2rem)}
+.lhero .acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.callout{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:14px 16px;border-radius:18px;background:var(--soft);margin:14px 0}
+.callout p{flex:1;min-width:200px;font-size:.92rem}
+
+
+/* team lists: same card, a small kind label (the seed of future categories) and the Savoro mark */
+.pl{position:relative}
+.pl .kind{position:absolute;right:10px;top:10px;z-index:1;font-size:.68rem;font-weight:850;letter-spacing:.02em;text-transform:uppercase;padding:4px 8px;border-radius:99px;background:#E31C13;color:#fff;pointer-events:none}
+.av.team{background:#E31C13;display:grid;place-items:center}

@@ -1,0 +1,33 @@
+/* how / biz */
+.page{max-width:820px}
+.page h1{font-size:clamp(2.1rem,8vw,3.4rem);margin:14px 0 10px}
+.page .lede{font-size:1.08rem;color:var(--muted);max-width:60ch}
+.steps{display:grid;gap:12px;margin-top:22px}
+.step{display:grid;gap:12px;padding:18px}
+@media (min-width:760px){.step{grid-template-columns:minmax(0,1fr) 260px;align-items:center}}
+.step h2{font-family:var(--disp);font-stretch:112%;font-weight:850;font-size:1.25rem;margin-bottom:6px;line-height:1.1}
+.step p{color:var(--muted)}
+.formula{font:600 .86rem ui-monospace,Menlo,monospace;background:var(--soft);padding:10px 12px;border-radius:10px;margin-top:10px;overflow-wrap:anywhere}
+.price{display:grid;gap:12px;padding:22px;border-radius:var(--r);background:var(--hero);color:#fff;position:relative;overflow:hidden;isolation:isolate}
+.price::before{content:"";position:absolute;inset:0;background-image:var(--panot);background-size:56px;z-index:-1}
+.price .amt{font-family:var(--disp);font-stretch:90%;font-weight:900;font-size:4rem;line-height:.9}
+.price .amt small{font:700 1rem var(--body)}
+.price ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.price li{display:flex;gap:10px;align-items:flex-start}
+.price li svg{width:20px;height:9px;flex:none;margin-top:8px}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (min-width:700px){.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.kpi{padding:12px;border-radius:14px;background:var(--soft)}
+.kpi small{display:block;font-size:.76rem;font-weight:750;color:var(--muted)}
+.kpi b{font-family:var(--disp);font-stretch:90%;font-weight:900;font-size:1.8rem;line-height:1.1}
+.kpi em{font-style:normal;font-size:.78rem;font-weight:800;color:var(--acc)}
+.faq{display:grid;gap:8px}
+.faq details{padding:0 16px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.faq summary{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:800;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary svg{width:22px;height:10px;flex:none;transition:transform .35s var(--spring)}
+.faq details[open] summary svg{transform:scaleY(-1)}
+.faq details p{padding:0 0 16px;color:var(--muted)}
+.two{display:grid;gap:14px}
+@media (min-width:760px){.two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+

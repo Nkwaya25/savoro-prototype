@@ -1,0 +1,27 @@
+/* onboarding */
+#onb{grid-template-rows:minmax(0,1fr) auto;background:var(--bg)}
+#onb.red{background:var(--red);color:#fff}
+#onb.red::before{content:"";position:absolute;inset:0;background-image:var(--panot);background-size:64px;pointer-events:none}
+.obd{overflow-y:auto;padding:calc(20px + env(safe-area-inset-top)) 20px 12px;position:relative}
+.oinn{max-width:520px;margin:0 auto;display:grid;gap:16px;min-height:100%;align-content:center}
+.oinn h1,.oinn h2{font-size:clamp(2.2rem,10vw,3.4rem)}
+.oinn .sub{font-size:1.05rem;opacity:.85}
+.splash .logo{font-size:clamp(64px,22vw,110px);color:#fff;padding-bottom:22px}
+.splash .logo .o svg path{stroke:#FFA800}
+.oft{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 20px calc(16px + env(safe-area-inset-bottom));max-width:560px;width:100%;margin:0 auto;position:relative}
+.oft .btn{flex:1}
+.codein{display:flex;gap:8px}
+.codein input{flex:1;min-height:58px;border-radius:16px;border:2px solid var(--line);background:var(--surface);padding:0 16px;font:900 1.4rem var(--disp);font-stretch:125%;letter-spacing:.06em;text-transform:uppercase}
+.codein input:focus{border-color:var(--ink);outline:none}
+.okmsg{display:flex;align-items:center;gap:10px;font-weight:750;padding:12px 14px;border-radius:14px;background:var(--soft)}
+.calib{display:grid;gap:10px}
+.cal{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;align-items:center;padding:12px;border-radius:18px;background:var(--surface);border:1px solid var(--line)}
+.cal b{font-weight:850;display:block;line-height:1.2}
+.cal small{color:var(--muted);font-size:.8rem}
+.cal .q5{grid-column:1/-1;display:flex;gap:6px}
+.cal .q5 button{flex:1;min-height:48px;border-radius:12px;background:var(--soft);display:grid;place-items:center;transition:background .2s,transform .2s var(--spring)}
+.cal .q5 button svg{width:34px;height:16px}
+.cal .q5 button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.cal .q5 button[aria-pressed=true] path{stroke:#FFA800}
+.cal .q5 button.nb{flex:1.4;font-size:.76rem;font-weight:800}
+
